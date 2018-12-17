@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// logic
 func arrLR(a []int32, d int32) []int32 {
 	var i int32
 	if len(a) < 2 {
