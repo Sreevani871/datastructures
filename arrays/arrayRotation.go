@@ -22,6 +22,20 @@ func arrLR(a []int32, d int32) []int32 {
 	return a
 }
 
+func arrRR(a []int32, d int32) []int32 {
+	var i int32
+	if len(a) < 2 {
+		return a
+	}
+	for i = 0; i < d; i++ {
+		var a1 []int32
+		a1 = append(a1, a[len(a)-1])
+		a1 = append(a1, a[0:len(a)-1]...)
+		a = a1
+	}
+	return a
+}
+
 func main() {
 	var (
 		arr     []int32
@@ -59,5 +73,6 @@ func main() {
 	}
 	fmt.Println("Arr:", arr)
 	fmt.Println("LR: ", arrLR(arr, int32(lrCount)))
+	fmt.Println("RR: ", arrRR(arr, int32(lrCount)))
 
 }
