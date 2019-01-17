@@ -1,5 +1,7 @@
 package main
 
+// Note: Post.publishedDate is unique here
+
 import (
 	"fmt"
 	"time"
