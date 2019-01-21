@@ -9,9 +9,9 @@ import (
       ----
        1    <-- root
      /   \
-    2     3
+    2     4
    /
-  4
+  3
 
 */
 type Tree struct {
@@ -91,20 +91,44 @@ func heightOfTree(node *Node) int {
 		} else {
 			return rh + 1
 		}
-
 	}
+}
+
+func isBST(root *Node) bool {
+
+	return isBSTUtil(root, nil, nil)
+}
+
+func isBSTUtil(root *Node, l *Node, r *Node) bool {
+	if root == nil {
+		return true
+	}
+
+	if l != nil && root.data < l.data {
+		return false
+	}
+
+	if r != nil && root.data > r.data {
+		return false
+	}
+
+	return isBSTUtil(root.leftChild, l, root) && isBSTUtil(root.rightChild, root, r)
+
 }
 
 func main() {
 	var t = &Tree{}
-	data := 1
+	data := 4
 	t.root = getNode(data)
 	data = 2
 	t.root.leftChild = getNode(data)
-	data = 3
+	data = 5
 	t.root.rightChild = getNode(data)
-	data = 4
+	data = 6
 	t.root.leftChild.leftChild = getNode(data)
+	data = 2
+	t.root.leftChild.rightChild = getNode(data)
+
 	// fmt.Println(t.root.data, t.root.leftChild.data, t.root.rightChild.data, t.root.leftChild.leftChild.data)
 
 	// Binary tree traversal
@@ -138,4 +162,6 @@ func main() {
 	// * BFS - Level Order
 	fmt.Println("LevelOrderTraversal: ", result)
 	levelOrderTraversal(t.root)
+
+	fmt.Println("IsBST: ", isBST(t.root))
 }
