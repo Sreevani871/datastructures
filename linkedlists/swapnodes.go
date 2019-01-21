@@ -67,6 +67,10 @@ func SwapNodesOfData(data1, data2 int) {
 
 	cur1.next = temp
 
+	if cur1.next == nil {
+		list.End = cur1
+	}
+
 }
 
 func returnNodePrev(data int) (*Node, *Node) {
@@ -90,6 +94,27 @@ func returnNodePrev(data int) (*Node, *Node) {
 
 		return previousNode, currentNode
 	}
+}
+
+func FindMiddleElement() []int {
+	var middleElement []int
+	middleElementIndex := list.Length / 2
+	currentNode := list.Start
+	i := 0
+
+	for i < middleElementIndex-1 {
+		currentNode = currentNode.next
+		i++
+	}
+	if list.Length%2 == 0 {
+		middleElement = append(middleElement, currentNode.data)
+		middleElement = append(middleElement, currentNode.next.data)
+	} else {
+		middleElement = append(middleElement, currentNode.next.data)
+	}
+
+	return middleElement
+
 }
 
 func PrintList() {
@@ -121,21 +146,31 @@ func main() {
 	fmt.Println("After Swap 2, 3")
 	SwapNodesOfData(2, 3)
 	PrintList()
+	fmt.Println("MiddleElement: ", FindMiddleElement())
 
 	fmt.Println("After Swap 2, 5")
 	SwapNodesOfData(2, 5)
 	PrintList()
+	fmt.Println("MiddleElement: ", FindMiddleElement())
 
 	fmt.Println("After Swap 1, 5")
 	SwapNodesOfData(1, 5)
 	PrintList()
+	fmt.Println("MiddleElement: ", FindMiddleElement())
 
 	fmt.Println("After Swap 5, 6")
 	SwapNodesOfData(5, 6)
 	PrintList()
+	fmt.Println("MiddleElement: ", FindMiddleElement())
 
 	fmt.Println("After Swap 1, 5")
 	SwapNodesOfData(1, 5)
 	PrintList()
+	fmt.Println("MiddleElement: ", FindMiddleElement())
 
+	Append(7)
+	fmt.Println("After Swap 1, 5")
+	SwapNodesOfData(1, 5)
+	PrintList()
+	fmt.Println("MiddleElement: ", FindMiddleElement())
 }
