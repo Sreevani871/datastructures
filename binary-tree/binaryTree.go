@@ -113,6 +113,17 @@ func isBSTUtil(root *Node, l *Node, r *Node) bool {
 	}
 
 	return isBSTUtil(root.leftChild, l, root) && isBSTUtil(root.rightChild, root, r)
+}
+
+func printLeftViewOfBinaryTree(root *Node) {
+	if root == nil {
+		return
+	}
+	if root.leftChild != nil {
+		fmt.Print(root.leftChild.data, " ")
+	}
+	printLeftViewOfBinaryTree(root.leftChild)
+	printLeftViewOfBinaryTree(root.rightChild)
 
 }
 
@@ -128,6 +139,8 @@ func main() {
 	t.root.leftChild.leftChild = getNode(data)
 	data = 2
 	t.root.leftChild.rightChild = getNode(data)
+	data = 4
+	t.root.leftChild.rightChild.leftChild = getNode(data)
 
 	// fmt.Println(t.root.data, t.root.leftChild.data, t.root.rightChild.data, t.root.leftChild.leftChild.data)
 
@@ -164,4 +177,8 @@ func main() {
 	levelOrderTraversal(t.root)
 
 	fmt.Println("IsBST: ", isBST(t.root))
+
+	fmt.Println("LeftViewOfBT: ")
+	printLeftViewOfBinaryTree(t.root)
+	fmt.Println()
 }
