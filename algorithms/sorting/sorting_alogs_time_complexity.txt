@@ -133,7 +133,7 @@ SortingAlgorithms
 
 		for i, e := range arr[1:] {
 			if arr[i] < arr[i-1]{
-			min:=i
+				min:=i
 				for j:=min;j>=0;j--{
 					if arr[j] < arr[min] {
 						swap(arr[j],arr[i])
