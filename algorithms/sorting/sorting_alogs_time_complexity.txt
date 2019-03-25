@@ -1,0 +1,160 @@
+********************* Time Complexities *********************
+
+Algorithm		|				 Time Complexity
+ 				|	 Best		|	Average		|	Worst	
+Selection Sort	|	Ω(n^2)		|	θ(n^2)		|	O(n^2)
+Bubble Sort		|	Ω(n)		|	θ(n^2)		|	O(n^2)
+InsertionSort	|	Ω(n)		|	θ(n^2)		|	O(n^2)
+Heap Sort		|	Ω(n log(n))	|	θ(n log(n))	|	O(n log(n))
+Quick Sort		|	Ω(n log(n))	|	θ(n log(n))	|	O(n^2)
+Merge Sort		|	Ω(n log(n))	|	θ(n log(n))	|	O(n log(n))
+Bucket Sort		|	Ω(n+k)		|	θ(n+k)		|	O(n^2)
+Radix Sort		|	Ω(nk)		|	θ(nk)		|	O(nk)
+
+
+
+********************* Terminology *********************
+
+InPlace Sorting Algorithm: 
+	An in-place sorting algorithm uses constant extra space for producing the output (modifies the given array only). It sorts the list only by modifying the order of the elements within the list.
+	Ex: BubbleSort, InsertionSort, SelectionSort
+
+
+External And Internal Sorting Algorithms:
+	When all data that needs to be sorted cannot be placed in-memory at a time, the sorting is called external sorting. External Sorting is used for massive amount of data. Merge Sort and its variations are typically used for external sorting. Some extrenal storage like hard-disk, CD, etc is used for external storage.
+	When all data is placed in-memory, then sorting is called internal sorting.
+
+Stable Sorting Algorithm:
+	A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output as they appear in the input array to be sorted.
+	Some Sorting Algorithms are stable by nature, such as Bubble Sort, Insertion Sort, Merge Sort, Count Sort etc
+	Most of the comparision based sorting alogrithms will maintain stability
+
+
+
+
+
+SortingAlgorithms
+
+1. BubleSort
+	Algo:
+	for i:=0;i<len(arr)-1;i++
+		for j:=0;j<len(arr)-i-1;j++
+			if arr[j]>arr[j+1] 
+				swap(&arr[j], &arr[j+1])
+
+
+2. SelectionSort
+	Algo:
+	for i:=0;i<len(arr)-1;i++
+		min_index := i
+		for j:=i:j<len(arr)-1;j++
+			if arr[j] < arr[min_index]
+				min_index = j
+
+		swap(&arr[i], &arr[min_index])
+
+3. MergeSort
+	- Uses Divide And Conquer
+	- 1. Divide : Divide the problem into subproblems
+	- 2. Conquer : recursively solve subproblem until base case occurs
+	- 3. Combine : Merge solution of subproblems to get final solution
+
+	MergeSort(arr []int) arr
+		If len(arr)<2
+			return arr
+		m = len(arr)/2
+		return Merge(MergeSort(arr[:m]), MergeSort(arr[m:]))
+     		
+    Merge(larr []int, rarr []int) []int
+    	n1 = len(larr) 
+    	n2 = len(rarr)
+    	size = n1+n2
+    	narr = make([]int,size )
+    	i,j := 0,0
+    	for k:=0;k<size;k++{
+    		if i>n1-1 && j<=n2-1{
+    			narr[k] = rarr[j]
+    			j++
+    		}else if j>n2-1 && i<=n1-1{
+    			narr[k] = larr[i]
+    			i++
+    		}else if larr[i]<rarr[j]{
+    			narr[k] = larr[i]
+    			i++
+    		}else {
+    			narr[k] = rarr[j]
+    			j++
+    		}
+    	}
+    	return narr
+
+
+
+4. QuickSort 
+	Like Merge Sort, QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot. There are many different versions of quickSort that pick pivot in different ways.
+
+	1. Always pick first element as pivot.
+	2. Always pick last element as pivot (implemented below)
+	3. Pick a random element as pivot.
+	4. Pick median as pivot.
+
+	QuickSort(arr []int)
+		if len(arr) < 2{
+			return arr
+		}
+		larr, marr,rarr := Partition(arr)
+		larr,rarr := QuickSort(larr), QuickSort(rarr)
+		append(larr,marr...)
+		append(larr,rarr)
+		return larr
+		
+
+	Partition(arr []int)
+		pi := len(arr)-1
+		larr,marr,rarr:=[]int{},[]int{},[]int{}
+		for i:=0; i<len(arr);i++{
+			switch {
+				case arr[i] < arr[pi]:
+					append to larr
+				case arr[i] > arr[pi]:
+					append to rarr
+				case arr[i] == arr[pi]:
+					append to marr
+
+			}
+		}
+		return larr,marr,rarr
+
+
+5. InsertionSort
+	Insert element in right position in already sorted array
+
+	InsertionSort(arr []int)
+
+		for i, e := range arr[1:] {
+			if arr[i] < arr[i-1]{
+			min:=i
+				for j:=min;j>=0;j--{
+					if arr[j] < arr[min] {
+						swap(arr[j],arr[i])
+						min = j
+					}
+				}
+			}
+		}
+		return arr
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+
