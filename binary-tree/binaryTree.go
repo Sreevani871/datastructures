@@ -147,7 +147,7 @@ func main() {
 	// Binary tree traversal
 	// * DFS - 1.Inorder -> left-root-right
 	// 		 2.Preorder-> root-left-right
-	//		 3.Postorder-> right-left-root
+	//		 3.Postorder-> left-right-root
 	// 1. Inorder
 	var result = []int{}
 	inOrderTraversal(t.root, func(data int) {
